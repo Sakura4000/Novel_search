@@ -16,7 +16,11 @@ export default function NovelResults({ novels, onSave, isLoading }: NovelResults
 
   const handleSave = (novel: Novel) => {
     const key = `${novel.title}-${novel.author}`
-    setSavedNovels(prev => new Set([...prev, key]))
+    setSavedNovels(prev => {
+      const newSet = new Set(prev)
+      newSet.add(key)
+      return newSet
+    })
     onSave(novel)
   }
 

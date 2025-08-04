@@ -1,3 +1,33 @@
 {
-  "pages": {}
+  "pages": {
+    "/_not-found": [
+      "static/chunks/webpack-a7772377bd490a99.js",
+      "static/chunks/fd9d1056-4845e81a58fa4c68.js",
+      "static/chunks/472-aee555fa6c15945f.js",
+      "static/chunks/main-app-dad9d13210aad3c5.js",
+      "static/chunks/app/_not-found-b110f5efcfd5d142.js"
+    ],
+    "/layout": [
+      "static/chunks/webpack-a7772377bd490a99.js",
+      "static/chunks/fd9d1056-4845e81a58fa4c68.js",
+      "static/chunks/472-aee555fa6c15945f.js",
+      "static/chunks/main-app-dad9d13210aad3c5.js",
+      "static/css/2643f18313d66668.css",
+      "static/chunks/app/layout-62bf3e312b3c7b96.js"
+    ],
+    "/baidu-verification/page": [
+      "static/chunks/webpack-a7772377bd490a99.js",
+      "static/chunks/fd9d1056-4845e81a58fa4c68.js",
+      "static/chunks/472-aee555fa6c15945f.js",
+      "static/chunks/main-app-dad9d13210aad3c5.js",
+      "static/chunks/app/baidu-verification/page-42b66261b0174d41.js"
+    ],
+    "/page": [
+      "static/chunks/webpack-a7772377bd490a99.js",
+      "static/chunks/fd9d1056-4845e81a58fa4c68.js",
+      "static/chunks/472-aee555fa6c15945f.js",
+      "static/chunks/main-app-dad9d13210aad3c5.js",
+      "static/chunks/app/page-cc0661675cd93e7e.js"
+    ]
+  }
 }

@@ -1,0 +1,18 @@
+"use strict";(()=>{var e={};e.id=970,e.ids=[970],e.modules={517:e=>{e.exports=require("next/dist/compiled/next-server/app-route.runtime.prod.js")},1049:(e,t,o)=>{o.r(t),o.d(t,{headerHooks:()=>f,originalPathname:()=>m,requestAsyncStorage:()=>h,routeModule:()=>p,serverHooks:()=>l,staticGenerationAsyncStorage:()=>d,staticGenerationBailout:()=>_});var r={};o.r(r),o.d(r,{GET:()=>GET,POST:()=>POST}),o(8976);var n=o(884),a=o(6132),s=o(5798);let i=process.env.FEISHU_APP_ID,c=process.env.FEISHU_APP_SECRET,u=process.env.FEISHU_FOLDER_TOKEN;async function getFeishuAccessToken(){try{let e=await fetch("https://open.feishu.cn/open-apis/auth/v3/tenant_access_token/internal",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({app_id:i,app_secret:c})}),t=await e.json();if(0!==t.code)throw Error(`获取访问令牌失败: ${t.msg}`);return t.tenant_access_token}catch(e){throw console.error("获取飞书访问令牌错误:",e),e}}async function createFeishuDocument(e,t){try{let o=await fetch("https://open.feishu.cn/open-apis/docx/v1/documents",{method:"POST",headers:{Authorization:`Bearer ${e}`,"Content-Type":"application/json"},body:JSON.stringify({folder_token:u,title:t})}),r=await o.json();if(0!==r.code)throw Error(`创建文档失败: ${r.msg}`);return r.data.document.document_id}catch(e){throw console.error("创建飞书文档错误:",e),e}}async function updateDocumentContent(e,t,o){try{let r=await fetch(`https://open.feishu.cn/open-apis/docx/v1/documents/${t}/blocks`,{method:"POST",headers:{Authorization:`Bearer ${e}`,"Content-Type":"application/json"},body:JSON.stringify({requests:[{insert_block:{location:{index:0},block:{type:"text",text:{content:o}}}}]})}),n=await r.json();if(0!==n.code)throw Error(`更新文档内容失败: ${n.msg}`)}catch(e){throw console.error("更新文档内容错误:",e),e}}async function POST(e){try{if(!i||!c||!u)return s.Z.json({error:"飞书API配置不完整，请检查环境变量"},{status:500});let{novels:t}=await e.json();if(!t||!Array.isArray(t)||0===t.length)return s.Z.json({error:"没有可导出的收藏数据"},{status:400});let o=await getFeishuAccessToken(),r=`小说收藏_${new Date().toLocaleDateString("zh-CN")}`,n=function(e){let t=function(e){let t={};return e.forEach(e=>{let o=e.category||"其他";t[o]||(t[o]=[]),t[o].push(e)}),t}(e),o=e.length,r=`# 📚 我的小说收藏
+
+`;return r+=`**导出时间**: ${new Date().toLocaleString("zh-CN")}
+**总收藏数**: ${o} 本
+
+`,Object.entries(t).forEach(([e,t])=>{r+=`## ${e} (${t.length}本)
+
+`,t.forEach((e,t)=>{r+=`### ${t+1}. ${e.title}
+
+**作者**: ${e.author}
+
+**简介**: ${e.description}
+
+**保存时间**: ${e.searchDate}
+
+---
+
+`})}),r}(t),a=await createFeishuDocument(o,r);return await updateDocumentContent(o,a,n),s.Z.json({success:!0,message:"成功导出到飞书文档",documentId:a,title:r,count:t.length})}catch(e){return console.error("飞书导出错误:",e),s.Z.json({error:"导出失败，请稍后重试"},{status:500})}}async function GET(){return s.Z.json({status:"ok",message:"飞书导出API正常运行",config:{hasAppId:!!i,hasAppSecret:!!c,hasFolderToken:!!u}})}let p=new n.AppRouteRouteModule({definition:{kind:a.x.APP_ROUTE,page:"/api/export-feishu/route",pathname:"/api/export-feishu",filename:"route",bundlePath:"app/api/export-feishu/route"},resolvedPagePath:"D:\\cursor vip for free\\test01\\app\\api\\export-feishu\\route.ts",nextConfigOutput:"",userland:r}),{requestAsyncStorage:h,staticGenerationAsyncStorage:d,serverHooks:l,headerHooks:f,staticGenerationBailout:_}=p,m="/api/export-feishu/route"}};var t=require("../../../webpack-runtime.js");t.C(e);var __webpack_exec__=e=>t(t.s=e),o=t.X(0,[955],()=>__webpack_exec__(1049));module.exports=o})();

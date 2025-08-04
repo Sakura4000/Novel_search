@@ -1,0 +1,7 @@
+{
+  "/_not-found": "app/_not-found.js",
+  "/api/export-feishu/route": "app/api/export-feishu/route.js",
+  "/api/search/route": "app/api/search/route.js",
+  "/baidu-verification/page": "app/baidu-verification/page.js",
+  "/page": "app/page.js"
+}
